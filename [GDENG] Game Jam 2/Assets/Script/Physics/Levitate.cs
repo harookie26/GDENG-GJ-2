@@ -23,13 +23,13 @@ public class Levitate : MonoBehaviour
 
     private void OnEnable()
     {
-        EventBroadcaster.Instance.AddObserver(EnvironmentEvents.ON_ENVIRONMENT_LEVITATE, LevitateBroadcast);
+        EventBroadcaster.Instance.AddObserver(EnvironmentEvents.ON_ENVIRONMENT_DELIRIOUS_MODE, LevitateBroadcast);
         EventBroadcaster.Instance.AddObserver(EnvironmentEvents.ON_ENVIRONMENT_RESET, ResetObject);
     }
 
     private void OnDisable()
     {
-        EventBroadcaster.Instance.RemoveActionAtObserver(EnvironmentEvents.ON_ENVIRONMENT_LEVITATE, LevitateBroadcast);
+        EventBroadcaster.Instance.RemoveActionAtObserver(EnvironmentEvents.ON_ENVIRONMENT_DELIRIOUS_MODE, LevitateBroadcast);
         EventBroadcaster.Instance.RemoveActionAtObserver(EnvironmentEvents.ON_ENVIRONMENT_RESET, ResetObject);
     }
 

@@ -34,9 +34,9 @@ public class EventNames {
 
     public class EnvironmentEvents
 	{
-		public const string ON_ENVIRONMENT_LEVITATE = "ON_ENVIRONMENT_LEVITATE";
-		public const string ON_ENVIRONMENT_LIGHTSFLICKERING = "ON_ENVIRONMENT_LIGHTSFLICKERING";
+		public const string ON_ENVIRONMENT_DELIRIOUS_MODE = "ON_ENVIRONMENT_DELIRIOUS_MODE";
 		public const string ON_ENVIRONMENT_RESET = "ON_ENVIRONMENT_RESET";
+		public const string ON_SANITY_CRITICAL = "ON_SANITY_CRITICAL";
     }
 }
 

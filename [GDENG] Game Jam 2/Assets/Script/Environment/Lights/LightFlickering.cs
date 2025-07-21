@@ -18,13 +18,13 @@ public class LightFlickering : MonoBehaviour
 
     private void OnEnable()
     {
-        EventBroadcaster.Instance.AddObserver(EnvironmentEvents.ON_ENVIRONMENT_LIGHTSFLICKERING, StartFlickering);
+        EventBroadcaster.Instance.AddObserver(EnvironmentEvents.ON_ENVIRONMENT_DELIRIOUS_MODE, StartFlickering);
         EventBroadcaster.Instance.AddObserver(EnvironmentEvents.ON_ENVIRONMENT_RESET, StopFlickering);
     }
 
     private void OnDisable()
     {
-        EventBroadcaster.Instance.RemoveActionAtObserver(EnvironmentEvents.ON_ENVIRONMENT_LIGHTSFLICKERING, StartFlickering);
+        EventBroadcaster.Instance.RemoveActionAtObserver(EnvironmentEvents.ON_ENVIRONMENT_DELIRIOUS_MODE, StartFlickering);
         EventBroadcaster.Instance.RemoveActionAtObserver(EnvironmentEvents.ON_ENVIRONMENT_RESET, StopFlickering);
     }
 
