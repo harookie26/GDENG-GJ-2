@@ -39,10 +39,12 @@ public class EventNames {
 		public const string ON_SANITY_CRITICAL = "ON_SANITY_CRITICAL";
     }
 
-	public class PuzzleEvents
+    public class PuzzleEvents
     {
         public const string ON_LEVER_PUZZLE_SOLVED = "ON_LEVER_PUZZLE_SOLVED";
+        public const string ON_SEQUENCE_PUZZLE_SOLVED = "ON_SEQUENCE_PUZZLE_SOLVED";
     }
+
 }
 
 
