@@ -1011,7 +1011,7 @@ MonoBehaviour:
   jumpHeight: 1
   groundMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   groundCheckRadius: 0.2
   groundCheckPoint: {fileID: 3780319546786652650}
 --- !u!1 &3740095818235363386
