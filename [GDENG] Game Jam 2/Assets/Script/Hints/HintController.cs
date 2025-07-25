@@ -4,7 +4,7 @@ public class HintController : MonoBehaviour
 {
     [Header("Hint Settings")]
     [TextArea]
-    public string hintMessage = "This is the hint for the player."; // Set hint in Inspector
+    public string hintMessage = "This is the hint for the player."; //Set hint in Inspector
 
     private bool playerInRange = false;
     private bool hintShown = false;
@@ -15,12 +15,12 @@ public class HintController : MonoBehaviour
         {
             if (!hintShown)
             {
-                HintUI.Instance?.ShowHint(hintMessage); // Show hint
+                HintUI.Instance?.ShowHint(hintMessage); //Show hint
                 hintShown = true;
             }
             else
             {
-                HintUI.Instance?.HideHint(); // Hide hint if F pressed again
+                HintUI.Instance?.HideHint(); //Hide hint if F pressed again
                 hintShown = false;
             }
         }

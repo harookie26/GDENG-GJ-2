@@ -5,8 +5,8 @@ using static EventNames;
 public class TimedDialogueOnInteract : MonoBehaviour
 {
     [Header("Dialogue UI")]
-    public GameObject dialoguePanel; // Assign the UI panel
-    public TextMeshProUGUI dialogueText; // Assign the TMP text component
+    public GameObject dialoguePanel; //Assign the UI panel
+    public TextMeshProUGUI dialogueText; //Assign the TMP text component
     [TextArea]
     public string message = "This is a timed dialogue.";
 
@@ -79,6 +79,6 @@ public class TimedDialogueOnInteract : MonoBehaviour
     private void OnSequencePuzzleSolved()
     {
         Debug.Log("Sequence puzzle solved! TimedDialogueOnInteract received event.");
-        // Add further logic here as needed
+        //Add further logic here as needed
     }
 }
