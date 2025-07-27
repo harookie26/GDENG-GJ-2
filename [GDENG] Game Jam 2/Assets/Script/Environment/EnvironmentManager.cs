@@ -16,6 +16,8 @@ public class EnvironmentManager : MonoBehaviour
     {
         deliriousMode = false;
         sanityMeter = maxSanity;
+        EventBroadcaster.Instance.PostEvent(EnvironmentEvents.ON_ENVIRONMENT_RESET);
+
     }
 
     void Update()

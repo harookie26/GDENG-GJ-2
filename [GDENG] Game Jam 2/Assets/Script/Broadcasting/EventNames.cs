@@ -44,6 +44,7 @@ public class EventNames {
         public const string ON_LEVER_PUZZLE_SOLVED = "ON_LEVER_PUZZLE_SOLVED";
         public const string ON_SEQUENCE_PUZZLE_SOLVED = "ON_SEQUENCE_PUZZLE_SOLVED";
 		public const string ON_CLASSROOM_PUZZLE_SOLVED = "ON_CLASSROOM_PUZZLE_SOLVED";
+		public const string ON_DINING_ROOM_PUZZLE_SOLVED = "ON_DINING_ROOM_PUZZLE_SOLVED";
     }
 
 }
