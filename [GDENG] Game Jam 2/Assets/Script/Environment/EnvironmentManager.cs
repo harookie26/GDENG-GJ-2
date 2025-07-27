@@ -12,6 +12,17 @@ public class EnvironmentManager : MonoBehaviour
     [SerializeField] private float sanityRegenRate = 5f;
     [SerializeField] private float sanityCriticalThreshold = 20f;
 
+    private void Awake()
+    {
+        EventBroadcaster.Instance.AddObserver(EnvironmentEvents.ON_ENVIRONMENT_DELIRIOUS_MODE, () => deliriousMode = true);
+        EventBroadcaster.Instance.AddObserver(EnvironmentEvents.ON_ENVIRONMENT_RESET, () => deliriousMode = false);
+    }
+
+    private void OnDestroy()
+    {
+        EventBroadcaster.Instance.RemoveActionAtObserver(EnvironmentEvents.ON_ENVIRONMENT_DELIRIOUS_MODE, () => deliriousMode = true);
+        EventBroadcaster.Instance.RemoveActionAtObserver(EnvironmentEvents.ON_ENVIRONMENT_RESET, () => deliriousMode = false);
+    }
     void Start()
     {
         deliriousMode = false;
@@ -22,21 +33,6 @@ public class EnvironmentManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (!deliriousMode)
-            {
-                deliriousMode = true;
-                // Sanity does not reset when re-entering delirious mode
-                EventBroadcaster.Instance.PostEvent(EnvironmentEvents.ON_ENVIRONMENT_DELIRIOUS_MODE);
-            }
-            else
-            {
-                deliriousMode = false;
-                EventBroadcaster.Instance.PostEvent(EnvironmentEvents.ON_ENVIRONMENT_RESET);
-            }
-        }
-
         if (deliriousMode)
         {
             sanityMeter -= sanityDepletionRate * Time.deltaTime;

@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
-    PlayerControls playerInput;
+    public PlayerControls playerInput;
     InputAction moveAction;
     InputAction jumpAction;
     InputAction sprintAction;
