@@ -1,2 +1,38 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Handle line endings explicitly
+* text=auto eol=lf
+
+# Unity text assets (force LF line endings)
+*.cs text eol=lf
+*.shader text eol=lf
+*.cginc text eol=lf
+*.compute text eol=lf
+*.hlsl text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.xml text eol=lf
+*.asmdef text eol=lf
+*.unity text eol=lf
+*.prefab text eol=lf
+*.mat text eol=lf
+*.meta text eol=lf
+*.asset text eol=lf
+
+# Binary files (prevent line ending normalization)
+*.mp3 binary
+*.wav binary
+*.ogg binary
+*.fbx binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.tga binary
+*.psd binary
+*.anim binary
+*.controller binary
+*.unitypackage binary
+*.dll binary
+*.exe binary
+
+# Fonts
+*.ttf binary
+*.otf binary

@@ -15,6 +15,8 @@ public class ExamRoomTableInteraction : MonoBehaviour
         {
             hasInteractedWithTable = true;
 
+
+
             EventBroadcaster.Instance.PostEvent(EnvironmentEvents.ON_ENVIRONMENT_DELIRIOUS_MODE);
             EventBroadcaster.Instance.PostEvent(PuzzleEvents.ON_CLASSROOM_PUZZLE_SOLVED);
         }
