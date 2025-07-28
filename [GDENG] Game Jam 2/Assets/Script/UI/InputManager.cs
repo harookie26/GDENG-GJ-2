@@ -4,6 +4,7 @@ using static EventNames;
 public class InputManager : MonoBehaviour
 {
     private bool deliriousMode;
+
     void Start()
     {
         deliriousMode = false;

@@ -33,6 +33,14 @@ public class EventNames {
 		public const string ON_DELETE_ALL = "ON_DELETE_ALL";
 	}
 
+	public class GameStateEvents
+	{
+		public const string ON_GAME_START = "ON_GAME_START";
+		public const string ON_GAME_PAUSE = "ON_GAME_PAUSE";
+		public const string ON_GAME_RESUME = "ON_GAME_RESUME";
+		public const string ON_GAME_END = "ON_GAME_END";
+    }
+
     public class EnvironmentEvents
 	{
 		public const string ON_ENVIRONMENT_DELIRIOUS_MODE = "ON_ENVIRONMENT_DELIRIOUS_MODE";
@@ -47,11 +55,24 @@ public class EventNames {
 		public const string ON_CLASSROOM_PUZZLE_SOLVED = "ON_CLASSROOM_PUZZLE_SOLVED";
 		public const string ON_DINING_ROOM_PUZZLE_SOLVED = "ON_DINING_ROOM_PUZZLE_SOLVED";
 		public const string ON_PUZZLE3_SOLVED = "ON_PUZZLE3_SOLVED";
+		public const string ON_PUZZLE4_SOLVED = "ON_PUZZLE4_SOLVED";
+
+		public const string ON_MAIN_GATE_UNLOCKED = "ON_MAIN_GATE_UNLOCKED";
     }
 
 	public class ItemEvents
 	{
 		public const string ON_ITEM_INTERACT = "ON_ITEM_INTERACT";
+    }
+
+	public class ControlsEvents
+	{
+		public const string ON_CONTROLS_DISABLED = "ON_CONTROLS_DISABLED";
+		public const string ON_CONTROLS_ENABLED = "ON_CONTROLS_ENABLED";
+		public const string ON_PLAYER_MOVEMENT_DISABLED = "ON_PLAYER_MOVEMENT_DISABLED";
+		public const string ON_PLAYER_MOVEMENT_ENABLED = "ON_PLAYER_MOVEMENT_ENABLED";
+		public const string ON_CAMERA_MOVEMENT_DISABLED = "ON_CAMERA_MOVEMENT_DISABLED";
+		public const string ON_CAMERA_MOVEMENT_ENABLED = "ON_CAMERA_MOVEMENT_ENABLED";
     }
 
 }

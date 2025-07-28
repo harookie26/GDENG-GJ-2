@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using Game.InputSystem;
+using static EventNames;
 
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class PlayerInputHandler : MonoBehaviour
     private IInputReceiver currentReceiver;
     public static PlayerInputHandler Instance { get; private set; }
 
-    private PlayerMovement playerMovement;
+    public PlayerMovement playerMovement;
     private InputManager inputManager;
 
     private void Awake()
@@ -33,38 +34,22 @@ public class PlayerInputHandler : MonoBehaviour
 
     void Update()
     {
-        // Only disable controls and camera when the input panel is open
         if (inputPanel.activeSelf)
         {
-            if (playerMovement != null)
-            {
-                playerMovement.playerInput.PlayerMovement.Disable();
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
-            if (inputManager != null)
-            {
-                inputManager.enabled = false;
-            }
+            EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_PLAYER_MOVEMENT_DISABLED);
+            EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_CAMERA_MOVEMENT_DISABLED);
+            EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_CONTROLS_DISABLED);
         }
         else
         {
-            if (playerMovement != null)
-            {
-                playerMovement.playerInput.PlayerMovement.Enable();
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-            if (inputManager != null)
-            {
-                inputManager.enabled = true;
-            }
+            EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_PLAYER_MOVEMENT_ENABLED);
+            EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_CAMERA_MOVEMENT_ENABLED);
+            EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_CONTROLS_ENABLED);    
         }
 
         if (inputPanel.activeSelf && inputField.isFocused &&
             (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)))
         {
-            // This is now handled by OnInputFieldSubmit, but you can keep this for redundancy.
             OnInputFieldSubmit(inputField.text);
         }
     }
@@ -73,7 +58,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         currentReceiver = receiver;
         inputField.text = "";
-        inputPanel.SetActive(true);  // Show the panel
+        inputPanel.SetActive(true);
         inputField.ActivateInputField();
     }
 }

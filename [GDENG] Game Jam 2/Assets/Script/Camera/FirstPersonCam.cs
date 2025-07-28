@@ -19,8 +19,7 @@ public class FirstPersonCam : MonoBehaviour
         Vector3 euler = cameraTarget.localEulerAngles;
         yaw = euler.y;
         pitch = euler.x;
-
-    }   
+    }
 
     void Update()
     {

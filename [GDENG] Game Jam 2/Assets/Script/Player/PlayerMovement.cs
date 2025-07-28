@@ -23,16 +23,16 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
     float calculatedJumpForce;
 
-    private void Awake()
+    private void OnEnable()
     {
         playerInput = new PlayerControls();
-        
+
         moveAction = playerInput.PlayerMovement.Movement;
         jumpAction = playerInput.PlayerMovement.Jump;
         sprintAction = playerInput.PlayerMovement.Sprint;
 
-        showCursorAction = playerInput.ToggleCursor.ShowCursor; 
-        hideCursorAction = playerInput.ToggleCursor.HideCursor; 
+        showCursorAction = playerInput.ToggleCursor.ShowCursor;
+        hideCursorAction = playerInput.ToggleCursor.HideCursor;
 
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -41,14 +41,10 @@ public class PlayerMovement : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        
-        playerInput.PlayerMovement.Enable(); 
-        
-        playerInput.ToggleCursor.Enable(); 
-    }
 
-    private void OnEnable()
-    {
+        playerInput.PlayerMovement.Enable();
+
+        playerInput.ToggleCursor.Enable();
         showCursorAction.performed += _ => ShowCursorState();
         hideCursorAction.performed += _ => HideCursorState();
     }

@@ -3,8 +3,9 @@ using UnityEngine.UI;
 using TMPro;
 public class InteractionPrompt : MonoBehaviour
 {
+    [SerializeField] private GameObject promptPanel;
     public static InteractionPrompt Instance { get; private set; }
-    public TextMeshProUGUI promptText;
+    [SerializeField] private TextMeshProUGUI promptText;
 
     void Awake()
     {
@@ -21,11 +22,19 @@ public class InteractionPrompt : MonoBehaviour
             promptText.text = message;
             promptText.enabled = true;
         }
+
+        if (promptPanel != null)
+            promptPanel.SetActive(true);
+        
     }
 
     public void HidePrompt()
     {
         if (promptText != null)
             promptText.enabled = false;
+
+        if (promptPanel != null)
+            promptPanel.SetActive(false);
+        
     }
 }

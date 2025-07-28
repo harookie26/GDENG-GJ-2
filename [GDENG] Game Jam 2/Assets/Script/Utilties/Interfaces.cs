@@ -7,3 +7,12 @@ namespace Game.InputSystem
         void OnInputSubmitted(string input);
     }
 }
+
+namespace Game.Interactable
+{
+    public interface IInteractable
+    {
+        void Interact();
+        Transform GetTransform();
+    }
+}
