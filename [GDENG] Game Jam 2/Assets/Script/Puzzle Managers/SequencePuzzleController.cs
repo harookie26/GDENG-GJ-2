@@ -3,7 +3,13 @@ using UnityEngine;
 public class SequencePuzzleController : MonoBehaviour
 {
     [Header("Interactable Items (in correct sequence)")]
-    public InteractableItem[] sequenceItems; // Assign in the correct order
+    public InteractableItem[] sequenceItems;
+
+    [Header("Object to Activate on Puzzle Solved")]
+    public GameObject objectToActivate;
+
+    [Header("Fragment Restroom Script")]
+    public EnableFragmentRestroom fragmentRestroom; // Assign in Inspector
 
     private int currentStep = 0;
     private bool puzzleSolved = false;
@@ -36,13 +42,24 @@ public class SequencePuzzleController : MonoBehaviour
                 puzzleSolved = true;
                 Debug.Log("Sequence puzzle solved! Broadcasting event.");
                 EventBroadcaster.Instance.PostEvent(EventNames.PuzzleEvents.ON_SEQUENCE_PUZZLE_SOLVED);
+
+                if (objectToActivate != null)
+                {
+                    objectToActivate.SetActive(true);
+                    Debug.Log($"{objectToActivate.name} activated because the sequence puzzle was solved.");
+                }
+
+                if (fragmentRestroom != null)
+                {
+                    fragmentRestroom.UnsealFragment();
+                    Debug.Log("Fragment restroom unsealed by SequencePuzzleController.");
+                }
             }
         }
         else
         {
             Debug.Log("Wrong item! Sequence reset.");
             currentStep = 0;
-            // Optionally show feedback: InteractionPrompt.Instance?.ShowPrompt("Wrong item! Try again.");
         }
     }
 }
