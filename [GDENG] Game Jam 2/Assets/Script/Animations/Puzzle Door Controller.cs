@@ -16,13 +16,15 @@ public class PuzzleDoorController : MonoBehaviour
         {
             if (!GameState.doorsUnlocked)
             {
+                SoundManager.Instance.PlayDoorLockedSFX();
                 //HintUI.Instance?.ShowHint("This door is locked.");
-                InteractionPrompt.Instance?.ShowPrompt("This door is locked");
+                //InteractionPrompt.Instance?.ShowPrompt("This door is locked");
                 return;
             }
 
             if (isOpen)
             {
+                SoundManager.Instance.PlayDoorClosingSFX();
                 if (classroomDoorAnimator != null)
                     classroomDoorAnimator.SetTrigger("Close");
                 isOpen = false;
@@ -30,6 +32,7 @@ public class PuzzleDoorController : MonoBehaviour
 
             else
             {
+                SoundManager.Instance.PlayDoorOpeningSFX();
                 if (classroomDoorAnimator != null)
                     classroomDoorAnimator.SetTrigger("Open");
                 isOpen = true;
