@@ -11,7 +11,8 @@ public class TableInteraction : MonoBehaviour
         {
             hasInteracted = true;
             GameState.doorsUnlocked = true;
-            InteractionPrompt.Instance?.ShowPrompt("Huh? I don't know what happened. Lemme check again if the doors earlier have been unlocked.");
+            SoundManager.Instance.PlayDoorKeyUnlockSFX();
+            //InteractionPrompt.Instance?.ShowPrompt("Huh? I don't know what happened. Lemme check again if the doors earlier have been unlocked.");
         }
     }
 

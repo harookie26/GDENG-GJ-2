@@ -20,12 +20,14 @@ public class SurgeryDoorController : MonoBehaviour
         {
             if (!GameState.doorsUnlocked)
             {
-                InteractionPrompt.Instance?.ShowPrompt("This door is locked");
+                SoundManager.Instance.PlayDoorLockedSFX();
+                //InteractionPrompt.Instance?.ShowPrompt("This door is locked");
                 return;
             }
 
             if (isOpen)
             {
+                SoundManager.Instance.PlayDoorClosingSFX();
                 if (classroomDoorAnimatorLeft != null)
                     classroomDoorAnimatorLeft.SetTrigger("Close");
                 if (classroomDoorAnimatorRight != null)
@@ -35,6 +37,7 @@ public class SurgeryDoorController : MonoBehaviour
 
             else
             {
+                SoundManager.Instance.PlayDoorOpeningSFX();
                 if (classroomDoorAnimatorLeft != null)
                     classroomDoorAnimatorLeft.SetTrigger("Open");
                 if (classroomDoorAnimatorRight != null)

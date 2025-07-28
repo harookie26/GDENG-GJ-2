@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip DeliriousSFX;
     public AudioClip OutOfBreathSFX;
     public AudioClip DoorOpeningSFX;
+    public AudioClip DoorClosingSFX;
     public AudioClip DoorKeyUnlockSFX;
     public AudioClip DoorLockedSFX;
     public AudioClip ToiletFlushSFX;
@@ -67,6 +68,7 @@ public class SoundManager : MonoBehaviour
     public void PlayeDeliriousSFX() => PlaySFX(DeliriousSFX, 0.65f); //65% volume
     public void PlayOutOfBreathSFX() => PlaySFX(OutOfBreathSFX, 0.6f); //60% volume
     public void PlayDoorOpeningSFX() => PlaySFX(DoorOpeningSFX, 0.7f); //70% volume
+    public void PlayDoorClosingSFX() => PlaySFX(DoorClosingSFX, 0.7f); //70% volume
     public void PlayDoorKeyUnlockSFX() => PlaySFX(DoorKeyUnlockSFX, 0.8f); //80% volume
     public void PlayDoorLockedSFX() => PlaySFX(DoorLockedSFX, 0.7f); //70% volume
     public void PlayToiletFlushSFX() => PlaySFX(ToiletFlushSFX, 0.6f); //60% volume

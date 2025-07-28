@@ -38,6 +38,7 @@ public class DoorOpening : MonoBehaviour, IInteractable
         if (isOpen)
         {
             //Close the door
+            SoundManager.Instance.PlayDoorClosingSFX();
             transform.DORotateQuaternion(initialRotation, openDuration);
             isOpen = false;
         }
@@ -45,6 +46,7 @@ public class DoorOpening : MonoBehaviour, IInteractable
         else
         {
             //Open the door
+            SoundManager.Instance.PlayDoorOpeningSFX();
             float targetY = openDirection == DoorOpenDirection.Right ? openAngle : -openAngle;
             Quaternion targetRotation = Quaternion.Euler(0, initialRotation.eulerAngles.y + targetY, 0);
             transform.DORotateQuaternion(targetRotation, openDuration);
