@@ -20,7 +20,6 @@ public class SurgeryDoorController : MonoBehaviour
         {
             if (!GameState.doorsUnlocked)
             {
-                //HintUI.Instance?.ShowHint("This door is locked.");
                 InteractionPrompt.Instance?.ShowPrompt("This door is locked");
                 return;
             }

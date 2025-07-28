@@ -37,13 +37,14 @@ public class DoorOpening : MonoBehaviour, IInteractable
     {
         if (isOpen)
         {
-            // Close the door
+            //Close the door
             transform.DORotateQuaternion(initialRotation, openDuration);
             isOpen = false;
         }
+
         else
         {
-            // Open the door
+            //Open the door
             float targetY = openDirection == DoorOpenDirection.Right ? openAngle : -openAngle;
             Quaternion targetRotation = Quaternion.Euler(0, initialRotation.eulerAngles.y + targetY, 0);
             transform.DORotateQuaternion(targetRotation, openDuration);
