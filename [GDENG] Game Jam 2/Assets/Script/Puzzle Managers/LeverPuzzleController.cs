@@ -38,12 +38,15 @@ public class LeverPuzzleController : MonoBehaviour
             if (currentStep >= sequence.Length)
             {
                 puzzleSolved = true;
+                SoundManager.Instance.Start3DGeneratorLoop();
+                GameState.LeverPuzzleSolved = true;
                 Debug.Log("Puzzle solved! Broadcasting event.");
                 EventBroadcaster.Instance.PostEvent(EventNames.PuzzleEvents.ON_LEVER_PUZZLE_SOLVED);
             }
         }
         else
         {
+            SoundManager.Instance.PlayShortCircuitSFX();
             Debug.Log("Wrong lever! Sequence reset.");
             currentStep = 0;
             // You can add feedback here, e.g. InteractionPrompt.Instance?.ShowPrompt("Wrong lever! Try again.");

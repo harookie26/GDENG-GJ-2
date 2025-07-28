@@ -14,6 +14,16 @@ public class InteractableItem : MonoBehaviour
         if (playerInRange && Input.GetKeyDown(KeyCode.F))
         {
             OnItemInteracted?.Invoke(this);
+
+            if (itemLabel == "Toilet")
+            {
+                SoundManager.Instance.PlayToiletFlushSFX();
+            }
+
+            if (itemLabel == "Faucet")
+            {
+                SoundManager.Instance.PlayFaucetOpenSFX();
+            }
         }
     }
 

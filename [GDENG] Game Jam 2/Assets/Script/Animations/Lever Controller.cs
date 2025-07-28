@@ -1,3 +1,4 @@
+using Game.Interactable;
 using UnityEngine;
 
 public class LeverController : MonoBehaviour
@@ -22,14 +23,21 @@ public class LeverController : MonoBehaviour
         {
             if (isOn)
             {
-                if (leverAnimator != null)
+                if (leverAnimator != null && !GameState.LeverPuzzleSolved)
+                {
+                    SoundManager.Instance.PlayLeverPullSFX();
                     leverAnimator.SetTrigger("On");
+                }
+
                 isOn = false;
             }
             else
             {
-                if (leverAnimator != null)
+                if (leverAnimator != null && !GameState.LeverPuzzleSolved)
+                {
+                    SoundManager.Instance.PlayLeverPullSFX();
                     leverAnimator.SetTrigger("Off");
+                }
                 isOn = true;
             }
             OnLeverPulled?.Invoke(this);

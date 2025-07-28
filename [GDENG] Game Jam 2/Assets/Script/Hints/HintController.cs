@@ -15,11 +15,14 @@ public class HintController : MonoBehaviour
         {
             if (!hintShown)
             {
+                SoundManager.Instance.PlayPaperRufflingSFX();
                 HintUI.Instance?.ShowHint(hintMessage); //Show hint
                 hintShown = true;
             }
+
             else
             {
+                SoundManager.Instance.PlayPaperRufflingSFX();
                 HintUI.Instance?.HideHint(); //Hide hint if F pressed again
                 hintShown = false;
             }

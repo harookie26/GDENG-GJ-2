@@ -44,7 +44,8 @@ public class UnlockableDoor : MonoBehaviour, IInteractable
     {
         if (!isUnlocked)
         {
-            InteractionPrompt.Instance?.ShowPrompt(lockedPrompt);
+            SoundManager.Instance.PlayDoorLockedSFX();
+            //InteractionPrompt.Instance?.ShowPrompt(lockedPrompt);
             ShowInnerDialogue(lockedPrompt);
             return;
         }
@@ -59,11 +60,13 @@ public class UnlockableDoor : MonoBehaviour, IInteractable
     {
         if (isOpen)
         {
+            SoundManager.Instance.PlayDoorClosingSFX();
             transform.DORotateQuaternion(initialRotation, openDuration);
             isOpen = false;
         }
         else
         {
+            SoundManager.Instance.PlayDoorOpeningSFX();
             float targetY = openDirection == DoorOpenDirection.Right ? openAngle : -openAngle;
             Quaternion targetRotation = Quaternion.Euler(0, initialRotation.eulerAngles.y + targetY, 0);
             transform.DORotateQuaternion(targetRotation, openDuration);

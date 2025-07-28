@@ -16,8 +16,8 @@ public class GeneratorLockedInteractableDoor : MonoBehaviour, IInteractable
     [SerializeField] private string lockedPrompt = "The keycard doesn't work. Backup power isn't enough, you must restore power from downstairs.";
 
     [Header("Inner Dialogue UI")]
-    public GameObject innerDialoguePanel; // Assign in Inspector
-    public TextMeshProUGUI innerDialogueText; // Assign in Inspector
+    public GameObject innerDialoguePanel; //Assign in Inspector
+    public TextMeshProUGUI innerDialogueText; //Assign in Inspector
     [SerializeField] private float innerDialogueDuration = 2f;
 
     private bool isOpen = false;
@@ -48,7 +48,8 @@ public class GeneratorLockedInteractableDoor : MonoBehaviour, IInteractable
     {
         if (!isUnlocked)
         {
-            InteractionPrompt.Instance?.ShowPrompt(lockedPrompt);
+            SoundManager.Instance.PlayDoorLockedSFX();
+            //InteractionPrompt.Instance?.ShowPrompt(lockedPrompt);
             ShowInnerDialogue(lockedPrompt);
             return;
         }
@@ -63,13 +64,15 @@ public class GeneratorLockedInteractableDoor : MonoBehaviour, IInteractable
     {
         if (isOpen)
         {
-            // Close the door
+            //Close the door
+            SoundManager.Instance.PlayDoorClosingSFX();
             transform.DORotateQuaternion(initialRotation, openDuration);
             isOpen = false;
         }
         else
         {
-            // Open the door
+            //Open the door
+            SoundManager.Instance.PlayDoorOpeningSFX();
             float targetY = openDirection == DoorOpenDirection.Right ? openAngle : -openAngle;
             Quaternion targetRotation = Quaternion.Euler(0, initialRotation.eulerAngles.y + targetY, 0);
             transform.DORotateQuaternion(targetRotation, openDuration);

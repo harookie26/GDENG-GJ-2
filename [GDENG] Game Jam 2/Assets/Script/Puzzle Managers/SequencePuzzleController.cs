@@ -9,7 +9,7 @@ public class SequencePuzzleController : MonoBehaviour
     public GameObject objectToActivate;
 
     [Header("Fragment Restroom Script")]
-    public EnableFragmentRestroom fragmentRestroom; // Assign in Inspector
+    public EnableFragmentRestroom fragmentRestroom; //Assign in Inspector
 
     private int currentStep = 0;
     private bool puzzleSolved = false;
