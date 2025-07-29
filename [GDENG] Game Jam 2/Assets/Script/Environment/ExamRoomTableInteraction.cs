@@ -1,7 +1,8 @@
 using UnityEngine;
 using TMPro;
 using static EventNames;
-public class ExamRoomTableInteraction : MonoBehaviour
+using Game.Interactable;
+public class ExamRoomTableInteraction : MonoBehaviour, IInteractable
 {
     public TextMeshPro deliriousMessageText;
     public TypewriterEffect typewriter;
@@ -9,17 +10,12 @@ public class ExamRoomTableInteraction : MonoBehaviour
     private bool playerInRange = false;
     private bool hasInteractedWithTable = false;
 
-    void Update()
+    public void Interact()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.F) && !hasInteractedWithTable)
-        {
             hasInteractedWithTable = true;
-
-
 
             EventBroadcaster.Instance.PostEvent(EnvironmentEvents.ON_ENVIRONMENT_DELIRIOUS_MODE);
             EventBroadcaster.Instance.PostEvent(PuzzleEvents.ON_CLASSROOM_PUZZLE_SOLVED);
-        }
     }
 
     private void OnEnable()
@@ -53,6 +49,8 @@ public class ExamRoomTableInteraction : MonoBehaviour
             hasInteractedWithTable = false;
         }
     }
+
+    public Transform GetTransform() => transform;
 
     void OnTriggerEnter(Collider other)
     {

@@ -48,6 +48,7 @@ public class EnvironmentManager : MonoBehaviour
         if (deliriousMode)
         {
             sanityMeter -= sanityDepletionRate * Time.deltaTime;
+            SoundManager.Instance.StartDeliriousLoop();
 
             if (!isSanityCritical && (sanityMeter / maxSanity) * 100f <= sanityCriticalThreshold)
             {
@@ -59,6 +60,8 @@ public class EnvironmentManager : MonoBehaviour
             {
                 sanityMeter = 0;
                 deliriousMode = false;
+                SoundManager.Instance.StopDeliriousLoop();
+                SoundManager.Instance.PlayOutOfBreathSFX();
                 EventBroadcaster.Instance.PostEvent(EnvironmentEvents.ON_ENVIRONMENT_RESET);
             }
 
@@ -72,6 +75,7 @@ public class EnvironmentManager : MonoBehaviour
         }
         else
         {
+            SoundManager.Instance.StopDeliriousLoop();
             if (sanityMeter < maxSanity)
             {
                 sanityMeter += sanityRegenRate * Time.deltaTime;
