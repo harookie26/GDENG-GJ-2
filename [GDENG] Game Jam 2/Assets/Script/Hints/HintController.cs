@@ -1,6 +1,7 @@
+using Game.Interactable;
 using UnityEngine;
 
-public class HintController : MonoBehaviour
+public class HintController : MonoBehaviour, IInteractable
 {
     [Header("Hint Settings")]
     [TextArea]
@@ -9,10 +10,9 @@ public class HintController : MonoBehaviour
     private bool playerInRange = false;
     private bool hintShown = false;
 
-    void Update()
+    public void Interact()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.F))
-        {
+ 
             if (!hintShown)
             {
                 SoundManager.Instance.PlayPaperRufflingSFX();
@@ -26,8 +26,10 @@ public class HintController : MonoBehaviour
                 HintUI.Instance?.HideHint(); //Hide hint if F pressed again
                 hintShown = false;
             }
-        }
+        
     }
+
+    public Transform GetTransform() => transform;
 
     void OnTriggerEnter(Collider other)
     {

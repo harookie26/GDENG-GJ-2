@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static EventNames;
 
 public class HintUI : MonoBehaviour
 {
@@ -23,11 +24,23 @@ public class HintUI : MonoBehaviour
     {
         hintText.text = message;
         hintPanel.SetActive(true);
+
+        EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_CAMERA_MOVEMENT_DISABLED);
+        EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_PLAYER_MOVEMENT_DISABLED);
+        EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_CONTROLS_DISABLED);
+        InteractionPrompt.Instance.HidePrompt();
+
+        //if ()
+        //HideHint();
     }
 
     public void HideHint()
     {
         hintPanel.SetActive(false);
         hintText.text = "";
+
+        EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_CAMERA_MOVEMENT_ENABLED);
+        EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_PLAYER_MOVEMENT_ENABLED);
+        EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_CONTROLS_ENABLED);
     }
 }
