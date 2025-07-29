@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     bool isGrounded;
     float calculatedJumpForce;
+    private float walkSFXCooldown = 0.3f;
+    private float walkSFXTimer = 0f;
 
     private void OnEnable()
     {
@@ -62,7 +64,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerInput.PlayerMovement.enabled) 
         {
+            walkSFXTimer -= Time.fixedDeltaTime;
+
             Vector2 input = moveAction.ReadValue<Vector2>();
+
+            if (input != Vector2.zero && isGrounded && walkSFXTimer <= 0f)
+            {
+                SoundManager.Instance.PlayWalkingSFX();
+                walkSFXTimer = walkSFXCooldown;         //Reset the timer once SFX is played
+            }
 
             bool isSprinting = sprintAction.ReadValue<float>() > 0.1f;
             float currentSpeed = isSprinting ? sprintSpeed : moveSpeed;
