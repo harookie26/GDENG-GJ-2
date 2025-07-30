@@ -65,6 +65,8 @@ public class Puzzle4UI : MonoBehaviour
             {
                 infoWindowOpen = true;
                 regretInfo.SetActive(true);
+                rageInfo.SetActive(false);
+                fearInfo.SetActive(false);
                 closeButton.interactable = true;
                 regretLogRead = true;
             }
@@ -91,6 +93,8 @@ public class Puzzle4UI : MonoBehaviour
             {
                 infoWindowOpen = true;
                 rageInfo.SetActive(true);
+                regretInfo.SetActive(false);
+                fearInfo.SetActive(false);
                 closeButton.interactable = true;
                 rageLogRead = true;
             }
@@ -117,6 +121,8 @@ public class Puzzle4UI : MonoBehaviour
             {
                 infoWindowOpen = true;
                 fearInfo.SetActive(true);
+                regretInfo.SetActive(false);
+                rageInfo.SetActive(false);
                 closeButton.interactable = true;
                 fearLogRead = true;
             }
