@@ -29,14 +29,12 @@ public class InteractableItem : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Trigger entered by: {other.gameObject.name} (Tag: {other.tag})");
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
             Debug.Log($"Player is now in range of interactable item: {itemLabel}");
         }
     }
-
 
     void OnTriggerExit(Collider other)
     {

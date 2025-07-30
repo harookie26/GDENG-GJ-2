@@ -20,6 +20,10 @@ public class EnableFragmentRestroom : MonoBehaviour
     [Header("Inner Dialogue Duration")]
     [SerializeField] private float innerDialogueDuration = 3f;
 
+    [Header("Fragment Model")]
+    public GameObject fragmentModel; 
+
+
     private bool playerInRange = false;
     private bool isSealed = true;
     private Coroutine hideDialogueCoroutine;
@@ -27,6 +31,11 @@ public class EnableFragmentRestroom : MonoBehaviour
     public void UnsealFragment()
     {
         isSealed = false;
+        if (fragmentModel != null)
+        {
+            fragmentModel.SetActive(true);
+            Debug.Log("Fragment model enabled in restroom.");
+        }
     }
 
     void Update()

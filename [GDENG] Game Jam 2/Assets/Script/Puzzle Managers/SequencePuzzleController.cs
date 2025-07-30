@@ -9,7 +9,7 @@ public class SequencePuzzleController : MonoBehaviour
     public GameObject objectToActivate;
 
     [Header("Fragment Restroom Script")]
-    public EnableFragmentRestroom fragmentRestroom; //Assign in Inspector
+    public EnableFragmentRestroom fragmentRestroom; 
 
     private int currentStep = 0;
     private bool puzzleSolved = false;
@@ -43,10 +43,11 @@ public class SequencePuzzleController : MonoBehaviour
                 Debug.Log("Sequence puzzle solved! Broadcasting event.");
                 EventBroadcaster.Instance.PostEvent(EventNames.PuzzleEvents.ON_SEQUENCE_PUZZLE_SOLVED);
 
-                if (objectToActivate != null)
+                // Track fragment acquisition globally
+                if (GameManager.Instance != null)
                 {
-                    objectToActivate.SetActive(true);
-                    Debug.Log($"{objectToActivate.name} activated because the sequence puzzle was solved.");
+                    GameManager.Instance.AcquireFragment(2); 
+                    Debug.Log("Fragment 2 acquired via SequencePuzzleController.");
                 }
 
                 if (fragmentRestroom != null)
@@ -62,4 +63,5 @@ public class SequencePuzzleController : MonoBehaviour
             currentStep = 0;
         }
     }
+
 }

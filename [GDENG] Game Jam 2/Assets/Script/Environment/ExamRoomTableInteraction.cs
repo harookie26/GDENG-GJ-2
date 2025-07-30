@@ -20,7 +20,15 @@ public class ExamRoomTableInteraction : MonoBehaviour, IInteractable
 
         EventBroadcaster.Instance.PostEvent(EnvironmentEvents.ON_ENVIRONMENT_DELIRIOUS_MODE);
         EventBroadcaster.Instance.PostEvent(PuzzleEvents.ON_CLASSROOM_PUZZLE_SOLVED);
+
+ 
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.AcquireFragment(3); 
+            Debug.Log("Fragment 3 acquired via ExamRoomTableInteraction.");
+        }
     }
+
 
     private void OnEnable()
     {

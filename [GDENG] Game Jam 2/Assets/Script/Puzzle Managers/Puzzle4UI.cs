@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static EventNames;
@@ -8,20 +7,15 @@ public class Puzzle4UI : MonoBehaviour
     [SerializeField] private Button regretButton, rageButton, fearButton, closeButton, shutDownButton;
     [SerializeField] private GameObject regretInfo, rageInfo, fearInfo, missingInfo;
 
-    // Add these fields for sprites
     [SerializeField] private Sprite fragmentAcquiredSprite;
     [SerializeField] private Sprite fragmentMissingSprite;
 
-    private bool fragment1Acquired = false, fragment2Acquired = false, fragment3Acquired = false;
     private bool infoWindowOpen = false;
     private bool regretLogRead = false, rageLogRead = false, fearLogRead = false;
 
-    private void Awake()
-    {
-        EventBroadcaster.Instance.AddObserver(PuzzleEvents.ON_DINING_ROOM_PUZZLE_SOLVED, Fragment1Acquired);
-        EventBroadcaster.Instance.AddObserver(PuzzleEvents.ON_SEQUENCE_PUZZLE_SOLVED, Fragment2Acquired);
-        EventBroadcaster.Instance.AddObserver(PuzzleEvents.ON_CLASSROOM_PUZZLE_SOLVED, Fragment3Acquired);
-    }
+    private bool Fragment1Acquired => GameManager.Instance != null && GameManager.Instance.Fragment1Acquired;
+    private bool Fragment2Acquired => GameManager.Instance != null && GameManager.Instance.Fragment2Acquired;
+    private bool Fragment3Acquired => GameManager.Instance != null && GameManager.Instance.Fragment3Acquired;
 
     private void OnEnable()
     {
@@ -31,19 +25,12 @@ public class Puzzle4UI : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         EventBroadcaster.Instance.PostEvent(UIEvents.ON_INTERACTION_PROMPT_HIDE);
-
     }
 
     private void OnDisable()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
-        EventBroadcaster.Instance.RemoveActionAtObserver(PuzzleEvents.ON_DINING_ROOM_PUZZLE_SOLVED, Fragment1Acquired);
-        EventBroadcaster.Instance.RemoveActionAtObserver(PuzzleEvents.ON_SEQUENCE_PUZZLE_SOLVED, Fragment2Acquired);
-        EventBroadcaster.Instance.RemoveActionAtObserver(PuzzleEvents.ON_CLASSROOM_PUZZLE_SOLVED, Fragment3Acquired);
-
-
     }
 
     private void Start()
@@ -57,6 +44,7 @@ public class Puzzle4UI : MonoBehaviour
             regretInfo.SetActive(false);
             rageInfo.SetActive(false);
             fearInfo.SetActive(false);
+            missingInfo.SetActive(false);
         });
         shutDownButton.onClick.AddListener(() =>
         {
@@ -65,32 +53,13 @@ public class Puzzle4UI : MonoBehaviour
             EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_CAMERA_MOVEMENT_ENABLED);
             EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_PLAYER_MOVEMENT_ENABLED);
             EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_CONTROLS_ENABLED);
-
         });
-    }
-
-    private void Fragment1Acquired()
-    {
-        fragment1Acquired = true;
-        UpdateRegretButtonImage();
-    }
-    
-    private void Fragment2Acquired()
-    {
-        fragment2Acquired = true;
-        UpdateRageButtonImage();
-    }
-    
-    private void Fragment3Acquired()
-    {
-        fragment3Acquired = true;
-        UpdateFearButtonImage();
     }
 
     private void RegretButtonClicked()
     {
-        Debug.Log($"Regret button clicked. Fragment acquired: {fragment1Acquired}");
-        if (fragment1Acquired)
+        Debug.Log($"Regret button clicked. Fragment acquired: {Fragment1Acquired}");
+        if (Fragment1Acquired)
         {
             if (!infoWindowOpen)
             {
@@ -115,8 +84,8 @@ public class Puzzle4UI : MonoBehaviour
 
     private void RageButtonClicked()
     {
-        Debug.Log($"Rage button clicked. Fragment acquired: {fragment2Acquired}");
-        if (fragment2Acquired)
+        Debug.Log($"Rage button clicked. Fragment acquired: {Fragment2Acquired}");
+        if (Fragment2Acquired)
         {
             if (!infoWindowOpen)
             {
@@ -141,8 +110,8 @@ public class Puzzle4UI : MonoBehaviour
 
     private void FearButtonClicked()
     {
-        Debug.Log($"Fear button clicked. Fragment acquired: {fragment3Acquired}");
-        if (fragment3Acquired)
+        Debug.Log($"Fear button clicked. Fragment acquired: {Fragment3Acquired}");
+        if (Fragment3Acquired)
         {
             if (!infoWindowOpen)
             {
@@ -164,7 +133,6 @@ public class Puzzle4UI : MonoBehaviour
             DisplayMissingInfo();
         }
     }
-
 
     private void DisplayMissingInfo()
     {
@@ -193,7 +161,7 @@ public class Puzzle4UI : MonoBehaviour
         var image = regretButton.GetComponent<Image>();
         if (image != null)
         {
-            image.sprite = fragment1Acquired ? fragmentAcquiredSprite : fragmentMissingSprite;
+            image.sprite = Fragment1Acquired ? fragmentAcquiredSprite : fragmentMissingSprite;
         }
     }
 
@@ -202,7 +170,7 @@ public class Puzzle4UI : MonoBehaviour
         var image = rageButton.GetComponent<Image>();
         if (image != null)
         {
-            image.sprite = fragment2Acquired ? fragmentAcquiredSprite : fragmentMissingSprite;
+            image.sprite = Fragment2Acquired ? fragmentAcquiredSprite : fragmentMissingSprite;
         }
     }
 
@@ -211,7 +179,7 @@ public class Puzzle4UI : MonoBehaviour
         var image = fearButton.GetComponent<Image>();
         if (image != null)
         {
-            image.sprite = fragment3Acquired ? fragmentAcquiredSprite : fragmentMissingSprite;
+            image.sprite = Fragment3Acquired ? fragmentAcquiredSprite : fragmentMissingSprite;
         }
     }
 }

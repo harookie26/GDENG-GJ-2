@@ -111,6 +111,14 @@ public class DiningRoomPuzzle : MonoBehaviour
             }
 
             EventBroadcaster.Instance.PostEvent(PuzzleEvents.ON_DINING_ROOM_PUZZLE_SOLVED);
+
+            // Track fragment acquisition globally
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.AcquireFragment(1); 
+                Debug.Log("Fragment 1 acquired via DiningRoomPuzzle.");
+            }
+
             if (fragmentLight != null)
             {
                 fragmentLight.SetActive(true);
@@ -127,6 +135,7 @@ public class DiningRoomPuzzle : MonoBehaviour
             }
         }
     }
+
 
 
     private bool IsPlayerNearbyChair(GameObject chair, float threshold = 2.0f)
