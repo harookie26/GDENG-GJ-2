@@ -1,7 +1,7 @@
 using Game.Interactable;
 using UnityEngine;
 
-public class LeverController : MonoBehaviour
+public class LeverController : MonoBehaviour, IInteractable
 {
     [Header("Lever Animator")]
     public Animator leverAnimator;
@@ -17,10 +17,8 @@ public class LeverController : MonoBehaviour
     private bool isOn = false;
     private bool playerInRange = false;
 
-    void Update()
+    public void Interact()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.F))
-        {
             if (isOn)
             {
                 if (leverAnimator != null && !GameState.LeverPuzzleSolved)
@@ -41,8 +39,9 @@ public class LeverController : MonoBehaviour
                 isOn = true;
             }
             OnLeverPulled?.Invoke(this);
-        }
     }
+
+    public Transform GetTransform() => transform;
 
     void OnTriggerEnter(Collider other)
     {

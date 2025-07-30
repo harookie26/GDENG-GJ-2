@@ -69,8 +69,6 @@ public class EnvironmentManager : MonoBehaviour
             {
                 float t = Mathf.Clamp01(sanityMeter / maxSanity);
                 vignette.intensity.value = Mathf.Lerp(0.15f, 0.5f, 0.75f - t); // More intense as sanity drops
-                //vignette.smoothness.value = 1f;
-                //vignette.rounded.value = true;
             }
         }
         else
