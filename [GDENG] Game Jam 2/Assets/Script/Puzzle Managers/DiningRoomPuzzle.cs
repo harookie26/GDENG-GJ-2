@@ -8,6 +8,8 @@ public class DiningRoomPuzzle : MonoBehaviour
     [SerializeField] private List<Vector3> targetPositions;
     [SerializeField] private Vector3 chairOffset;
     [SerializeField] private GameObject fragmentLight;
+    [SerializeField] private GameObject fragmentModel; 
+
 
     private GameObject player;
     private GameObject pickedUpChair;
@@ -117,10 +119,15 @@ public class DiningRoomPuzzle : MonoBehaviour
             {
                 Debug.LogWarning("fragmentLight is not assigned!");
             }
-        }
 
-        
+            if (fragmentModel != null)
+            {
+                fragmentModel.SetActive(true);
+                Debug.Log("Fragment model activated after dining room puzzle solved.");
+            }
+        }
     }
+
 
     private bool IsPlayerNearbyChair(GameObject chair, float threshold = 2.0f)
     {

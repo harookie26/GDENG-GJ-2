@@ -2,32 +2,38 @@ using UnityEngine;
 using TMPro;
 using static EventNames;
 using Game.Interactable;
+
 public class ExamRoomTableInteraction : MonoBehaviour, IInteractable
 {
     public TextMeshPro deliriousMessageText;
     public TypewriterEffect typewriter;
+
+    [Header("Fragment Model")]
+    public GameObject fragmentModel; 
 
     private bool playerInRange = false;
     private bool hasInteractedWithTable = false;
 
     public void Interact()
     {
-            hasInteractedWithTable = true;
+        hasInteractedWithTable = true;
 
-            EventBroadcaster.Instance.PostEvent(EnvironmentEvents.ON_ENVIRONMENT_DELIRIOUS_MODE);
-            EventBroadcaster.Instance.PostEvent(PuzzleEvents.ON_CLASSROOM_PUZZLE_SOLVED);
+        EventBroadcaster.Instance.PostEvent(EnvironmentEvents.ON_ENVIRONMENT_DELIRIOUS_MODE);
+        EventBroadcaster.Instance.PostEvent(PuzzleEvents.ON_CLASSROOM_PUZZLE_SOLVED);
     }
 
     private void OnEnable()
     {
         EventBroadcaster.Instance.AddObserver(EnvironmentEvents.ON_ENVIRONMENT_DELIRIOUS_MODE, ShowMessage);
         EventBroadcaster.Instance.AddObserver(EnvironmentEvents.ON_ENVIRONMENT_RESET, HideMessage);
+        EventBroadcaster.Instance.AddObserver(PuzzleEvents.ON_CLASSROOM_PUZZLE_SOLVED, ShowFragment);
     }
 
     private void OnDisable()
     {
         EventBroadcaster.Instance.RemoveActionAtObserver(EnvironmentEvents.ON_ENVIRONMENT_DELIRIOUS_MODE, ShowMessage);
         EventBroadcaster.Instance.RemoveActionAtObserver(EnvironmentEvents.ON_ENVIRONMENT_RESET, HideMessage);
+        EventBroadcaster.Instance.RemoveActionAtObserver(PuzzleEvents.ON_CLASSROOM_PUZZLE_SOLVED, ShowFragment);
     }
 
     private void ShowMessage()
@@ -47,6 +53,17 @@ public class ExamRoomTableInteraction : MonoBehaviour, IInteractable
             typewriter.Clear(deliriousMessageText);
             deliriousMessageText.gameObject.SetActive(false);
             hasInteractedWithTable = false;
+        }
+        if (fragmentModel != null)
+            fragmentModel.SetActive(false);
+    }
+
+    private void ShowFragment()
+    {
+        if (fragmentModel != null)
+        {
+            fragmentModel.SetActive(true);
+            Debug.Log("Fragment model activated after classroom puzzle solved.");
         }
     }
 
@@ -71,3 +88,4 @@ public class ExamRoomTableInteraction : MonoBehaviour, IInteractable
         }
     }
 }
+

@@ -1,9 +1,12 @@
 using Game.Interactable;
 using UnityEngine;
-using static EventNames;        
+using static EventNames;
 
 public class MainGate : MonoBehaviour, IInteractable
 {
+    [Header("Ending Dialogue Reference")]
+    public EndingSceneDialogue endingSceneDialogue; // Assign in Inspector
+
     private bool _isMainGateUnlocked = false;
 
     private void Awake()
@@ -22,6 +25,8 @@ public class MainGate : MonoBehaviour, IInteractable
         if (_isMainGateUnlocked)
         {
             EventBroadcaster.Instance.PostEvent(GameStateEvents.ON_GAME_END);
+            if (endingSceneDialogue != null)
+                endingSceneDialogue.StartEndingSequence();
         }
         else
         {

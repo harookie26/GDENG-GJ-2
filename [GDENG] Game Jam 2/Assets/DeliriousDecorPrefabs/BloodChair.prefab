@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1761057643965634884}
   m_Layer: 0
   m_Name: BloodChair
-  m_TagString: Untagged
+  m_TagString: canLevitate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
