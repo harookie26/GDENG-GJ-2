@@ -30,8 +30,7 @@ public class Puzzle4UI : MonoBehaviour
         UpdateFearButtonImage();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        InteractionPrompt.Instance?.HidePrompt();
-
+        EventBroadcaster.Instance.PostEvent(UIEvents.ON_INTERACTION_PROMPT_HIDE);
 
     }
 

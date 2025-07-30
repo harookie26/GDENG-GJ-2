@@ -1,13 +1,16 @@
 using System.Diagnostics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static EventNames;
 using Game.InputSystem;
+using TMPro;
 
-public class Puzzle4UI : MonoBehaviour, IInputReceiver
+public class Puzzle3UI : MonoBehaviour, IInputReceiver
 {
     [SerializeField] private Button shutDownButton;
+    [SerializeField] private TMP_Text passwordResponse;
+    [SerializeField] private GameObject passwordResponsefield;
+
 
     private void OnEnable()
     {
@@ -15,8 +18,7 @@ public class Puzzle4UI : MonoBehaviour, IInputReceiver
         Cursor.lockState = CursorLockMode.None;
 
         PlayerInputHandler.Instance.StartInput(this);
-        InteractionPrompt.Instance?.HidePrompt();
-
+        EventBroadcaster.Instance.PostEvent(UIEvents.ON_INTERACTION_PROMPT_HIDE);
 
     }
 
@@ -48,11 +50,15 @@ public class Puzzle4UI : MonoBehaviour, IInputReceiver
     {
         if (input == "GDENG01")
         {
-            Debug.Log("OfficePC: Correct code!");
             EventBroadcaster.Instance.PostEvent(PuzzleEvents.ON_PUZZLE3_SOLVED);
+            passwordResponsefield.SetActive(true);
+            passwordResponse.text = "Source Gate Control door unlocked.";
         }
         else
-            Debug.Log("OfficePC: Incorrect code.");
+        {
+            passwordResponsefield.SetActive(true);
+            passwordResponse.text = "Incorrect Password";
+        }
     }
 
 }

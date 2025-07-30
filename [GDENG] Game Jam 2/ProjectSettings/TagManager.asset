@@ -6,6 +6,7 @@ TagManager:
   tags:
   - canLevitate
   - canFlicker
+  - ComputerUI
   layers:
   - Default
   - TransparentFX

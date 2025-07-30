@@ -82,6 +82,11 @@ public class EventNames {
 		public const string ON_PLAYER_STOPPED = "ON_PLAYER_STOPPED";
     }
 
+	public class UIEvents
+	{
+		public const string ON_INTERACTION_PROMPT_HIDE = "ON_INTERACTION_PROMPT_HIDE";
+    }
+
 }
 
 

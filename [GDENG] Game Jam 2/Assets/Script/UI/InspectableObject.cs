@@ -29,8 +29,23 @@ public class InspectableObject : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            // Check if any active objects with tag "ComputerUI" exist
+            GameObject[] computerUIs = GameObject.FindGameObjectsWithTag("ComputerUI");
+            bool anyActiveComputerUI = false;
+            foreach (var ui in computerUIs)
+            {
+                if (ui.activeInHierarchy)
+                {
+                    anyActiveComputerUI = true;
+                    break;
+                }
+            }
+
             playerInRange = true;
-            InteractionPrompt.Instance?.ShowPrompt(promptMessage);
+            if (!anyActiveComputerUI)
+            {
+                InteractionPrompt.Instance?.ShowPrompt(promptMessage);
+            }
         }
     }
 

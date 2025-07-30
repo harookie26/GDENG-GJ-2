@@ -10,6 +10,12 @@ public class Puzzle3OfficePC
     [SerializeField] private GameObject Puzzle3UI;
     public void Interact()
     {
+
+        if (Puzzle3UI.activeSelf)
+        {
+            Debug.Log("Puzzle3: Puzzle UI is already active.");
+            return;
+        }
         Debug.Log("Puzzle3: Player interacted with the Office PC.");
 
         SoundManager.Instance.PlayComputerStartSFX();
