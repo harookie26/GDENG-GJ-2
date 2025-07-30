@@ -54,7 +54,7 @@ public class DiningRoomPuzzle : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             if (!isPickedUp)
                 PickUpChair();
