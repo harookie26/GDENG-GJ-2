@@ -89,6 +89,7 @@ public class Puzzle4UI : MonoBehaviour
 
     private void RegretButtonClicked()
     {
+        Debug.Log($"Regret button clicked. Fragment acquired: {fragment1Acquired}");
         if (fragment1Acquired)
         {
             if (!infoWindowOpen)
@@ -106,11 +107,15 @@ public class Puzzle4UI : MonoBehaviour
             }
         }
         else
+        {
+            Debug.Log("Regret fragment not acquired. Showing missing info.");
             DisplayMissingInfo();
+        }
     }
 
     private void RageButtonClicked()
     {
+        Debug.Log($"Rage button clicked. Fragment acquired: {fragment2Acquired}");
         if (fragment2Acquired)
         {
             if (!infoWindowOpen)
@@ -128,11 +133,15 @@ public class Puzzle4UI : MonoBehaviour
             }
         }
         else
+        {
+            Debug.Log("Rage fragment not acquired. Showing missing info.");
             DisplayMissingInfo();
+        }
     }
 
     private void FearButtonClicked()
     {
+        Debug.Log($"Fear button clicked. Fragment acquired: {fragment3Acquired}");
         if (fragment3Acquired)
         {
             if (!infoWindowOpen)
@@ -150,8 +159,12 @@ public class Puzzle4UI : MonoBehaviour
             }
         }
         else
+        {
+            Debug.Log("Fear fragment not acquired. Showing missing info.");
             DisplayMissingInfo();
+        }
     }
+
 
     private void DisplayMissingInfo()
     {
