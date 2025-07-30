@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static EventNames;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
@@ -72,11 +73,17 @@ public class PlayerMovement : MonoBehaviour
             if (input != Vector2.zero)
             {
                 SoundManager.Instance?.StartWalkingLoop(isSprinting);
+
+                if (isSprinting)
+                    EventBroadcaster.Instance.PostEvent(PlayerEvents.ON_PLAYER_RUNNING);
+                else
+                    EventBroadcaster.Instance.PostEvent(PlayerEvents.ON_PLAYER_WALKING);
             }
 
             else
             {
                 SoundManager.Instance?.StopWalkingLoop();
+                EventBroadcaster.Instance.PostEvent(PlayerEvents.ON_PLAYER_STOPPED);
             }
 
             Transform cam = Camera.main.transform;

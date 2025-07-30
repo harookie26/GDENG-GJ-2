@@ -1,28 +1,26 @@
-using Game.InputSystem;
 using Game.Interactable;
 using UnityEngine;
 
 using static EventNames;
 
 public class Puzzle3OfficePC
-    : MonoBehaviour, IInputReceiver, IInteractable
+    : MonoBehaviour, IInteractable
 {
+
+    [SerializeField] private GameObject Puzzle3UI;
     public void Interact()
     {
         Debug.Log("Puzzle3: Player interacted with the Office PC.");
-        PlayerInputHandler.Instance.StartInput(this);
+
+        SoundManager.Instance.PlayComputerStartSFX();
+        Puzzle3UI.SetActive(true);
+
+        EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_CAMERA_MOVEMENT_DISABLED);
+        EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_PLAYER_MOVEMENT_DISABLED);
+        EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_CONTROLS_DISABLED);
+
     }
 
     public Transform GetTransform() => transform;
 
-    public void OnInputSubmitted(string input)
-    {
-        if (input == "1234")
-        {
-            Debug.Log("OfficePC: Correct code!");
-            EventBroadcaster.Instance.PostEvent(PuzzleEvents.ON_PUZZLE3_SOLVED);
-        }
-        else
-            Debug.Log("OfficePC: Incorrect code.");
-    }
 }

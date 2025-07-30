@@ -9,7 +9,6 @@ public class Puzzle4SourceGatePC : MonoBehaviour, IInteractable
     {
         SoundManager.Instance.PlayComputerStartSFX();
         Puzzle4UI.SetActive(true);
-        InteractionPrompt.Instance?.HidePrompt();
 
         EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_CAMERA_MOVEMENT_DISABLED);
         EventBroadcaster.Instance.PostEvent(ControlsEvents.ON_PLAYER_MOVEMENT_DISABLED);

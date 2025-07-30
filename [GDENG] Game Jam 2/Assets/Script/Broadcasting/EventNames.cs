@@ -75,6 +75,13 @@ public class EventNames {
 		public const string ON_CAMERA_MOVEMENT_ENABLED = "ON_CAMERA_MOVEMENT_ENABLED";
     }
 
+	public class PlayerEvents
+	{
+		public const string ON_PLAYER_WALKING = "ON_PLAYER_WALKING";
+		public const string ON_PLAYER_RUNNING = "ON_PLAYER_RUNNING";
+		public const string ON_PLAYER_STOPPED = "ON_PLAYER_STOPPED";
+    }
+
 }
 
 

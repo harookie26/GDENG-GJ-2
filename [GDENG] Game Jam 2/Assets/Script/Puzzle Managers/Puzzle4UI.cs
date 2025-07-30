@@ -8,6 +8,10 @@ public class Puzzle4UI : MonoBehaviour
     [SerializeField] private Button regretButton, rageButton, fearButton, closeButton, shutDownButton;
     [SerializeField] private GameObject regretInfo, rageInfo, fearInfo, missingInfo;
 
+    // Add these fields for sprites
+    [SerializeField] private Sprite fragmentAcquiredSprite;
+    [SerializeField] private Sprite fragmentMissingSprite;
+
     private bool fragment1Acquired = false, fragment2Acquired = false, fragment3Acquired = false;
     private bool infoWindowOpen = false;
     private bool regretLogRead = false, rageLogRead = false, fearLogRead = false;
@@ -21,8 +25,12 @@ public class Puzzle4UI : MonoBehaviour
 
     private void OnEnable()
     {
+        UpdateRegretButtonImage();
+        UpdateRageButtonImage();
+        UpdateFearButtonImage();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        InteractionPrompt.Instance?.HidePrompt();
 
 
     }
@@ -65,16 +73,19 @@ public class Puzzle4UI : MonoBehaviour
     private void Fragment1Acquired()
     {
         fragment1Acquired = true;
+        UpdateRegretButtonImage();
     }
     
     private void Fragment2Acquired()
     {
         fragment2Acquired = true;
+        UpdateRageButtonImage();
     }
     
     private void Fragment3Acquired()
     {
         fragment3Acquired = true;
+        UpdateFearButtonImage();
     }
 
     private void RegretButtonClicked()
@@ -163,5 +174,32 @@ public class Puzzle4UI : MonoBehaviour
     {
         if (regretLogRead && rageLogRead && fearLogRead)
             EventBroadcaster.Instance.PostEvent(PuzzleEvents.ON_MAIN_GATE_UNLOCKED);
+    }
+
+    private void UpdateRegretButtonImage()
+    {
+        var image = regretButton.GetComponent<Image>();
+        if (image != null)
+        {
+            image.sprite = fragment1Acquired ? fragmentAcquiredSprite : fragmentMissingSprite;
+        }
+    }
+
+    private void UpdateRageButtonImage()
+    {
+        var image = rageButton.GetComponent<Image>();
+        if (image != null)
+        {
+            image.sprite = fragment2Acquired ? fragmentAcquiredSprite : fragmentMissingSprite;
+        }
+    }
+
+    private void UpdateFearButtonImage()
+    {
+        var image = fearButton.GetComponent<Image>();
+        if (image != null)
+        {
+            image.sprite = fragment3Acquired ? fragmentAcquiredSprite : fragmentMissingSprite;
+        }
     }
 }
