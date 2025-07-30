@@ -1,6 +1,7 @@
+using Game.Interactable;
 using UnityEngine;
 
-public class InteractableItem : MonoBehaviour
+public class InteractableItem : MonoBehaviour, IInteractable
 {
     [Header("Item Label")]
     public string itemLabel = "Item";
@@ -9,10 +10,8 @@ public class InteractableItem : MonoBehaviour
 
     private bool playerInRange = false;
 
-    void Update()
+    public void Interact()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.F))
-        {
             OnItemInteracted?.Invoke(this);
 
             if (itemLabel == "Toilet")
@@ -24,8 +23,9 @@ public class InteractableItem : MonoBehaviour
             {
                 SoundManager.Instance.PlayFaucetOpenSFX();
             }
-        }
     }
+
+    public Transform GetTransform() => transform;
 
     void OnTriggerEnter(Collider other)
     {
